@@ -19,26 +19,15 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build'))); // Serve static files from the React app
-
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/exams', ExamsRoutes);
 
-
-// Always return index.html for client-side routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 // Health check route
 app.get('/', (_req, res) => {
   res.send('API is running');
 });
-
-
-
 
 // Start server
 app.listen(PORT, () => {
